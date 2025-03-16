@@ -1,10 +1,18 @@
 import sys
 
 N = int(sys.stdin.readline().rstrip())
-arr = list(map(int, sys.stdin.readline().rstrip().split()))
-T, P = map(int, sys.stdin.readline().rstrip().split())
-
-answer = sum((i + T - 1) // T for i in arr)  # 올림 나눗셈 처리
+arr = list(map(int,sys.stdin.readline().rstrip().split()))
+T, P = map(int,sys.stdin.readline().rstrip().split())
+answer = 0
+for i in arr:
+    if i == 0:
+        continue
+    if i <= T:
+        answer += 1
+    else:
+        answer += i//T
+        if i % T > 0:
+            answer += 1
 
 print(answer)
-print(N // P, N % P)  # 몫과 나머지 출력
+print(N//P, N%P)
