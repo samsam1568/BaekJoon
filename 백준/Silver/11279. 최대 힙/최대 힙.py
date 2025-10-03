@@ -1,15 +1,16 @@
 import heapq
 import sys
 
-N = int(sys.stdin.readline().rstrip())
-arr = []
+max_heap = []
 
+N = int(sys.stdin.readline())
 for i in range(N):
-    x = sys.stdin.readline().rstrip()
-    if x == "0":
-        if len(arr) == 0:
-            print(0)
+    num = int(sys.stdin.readline())
+    if num == 0:
+        if len(max_heap) > 0:
+            print(-heapq.heappop(max_heap))
         else:
-            print(-heapq.heappop(arr))
+            print(0)
+
     else:
-        heapq.heappush(arr,-int(x))
+        heapq.heappush(max_heap,-num)
