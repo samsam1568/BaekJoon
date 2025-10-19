@@ -1,7 +1,8 @@
 import sys
 
 N = int(sys.stdin.readline())
-arr = [list(map(str,input().split())) for _ in range(N)]
+arr = [list(map(str,sys.stdin.readline().split())) for _ in range(N)]
+
 mydic = dict()
 
 for a in arr:
