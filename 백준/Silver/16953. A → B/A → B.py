@@ -1,30 +1,25 @@
-import math
-
+from collections import deque
 
 A,B = map(int,input().split())
-cnt = 0
-answer = math.inf
 
-def solution(nNumber, tNumber, cnt):
-    global answer
-
-    if nNumber > tNumber:
-        return -1
+def solution(start,target):
+    if start == target:
+        return 0
     
-    if nNumber == tNumber:
-        if answer > cnt:
-            answer = cnt
-        
-        return answer
-    
-    solution(int(str(nNumber)+"1"),tNumber,cnt+1)
-    solution(nNumber*2,tNumber,cnt+1)
+    queue = deque([(start, 0)])
+    visited = set([start])
 
-    return cnt
+    while queue:
+        num,cnt = queue.popleft()
 
-solution(A, B, 0)  # ← 호출 추가
+        for i in [int(str(num)+"1"), num*2]:
+            if i == target:
+                return cnt+1
+            
+            if i < target and i not in visited:
+                visited.add(i)
+                queue.append((i,cnt+1))
+    return -1
 
-if answer == math.inf:
-    print(-1)
-else:
-    print(answer+1)
+result = solution(A, B)
+print(-1 if result == -1 else result + 1)
